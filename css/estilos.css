@@ -1,0 +1,13 @@
+h1 {
+    color: fuchsia;
+}
+
+.imagenmediana {
+    width: 150px;
+    height: 300px;
+}
+
+.imagenpequeña {
+    width: 80px;
+    height: 80px;
+}
