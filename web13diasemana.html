@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calcularDia(){
+            //Variable para el valor introducido del dia
+            let dia = parseInt(document.getElementById("cajadia").value);
+            //Variable para el valor introducido del mes
+            let mes = parseInt(document.getElementById("cajames").value);
+            //Variable para el valor introducido del año
+            let anyo = parseInt(document.getElementById("cajaanyo").value);
+
+            //Si el mes introducido es menor que 3 le sumamos 12 y restamos 1 al año
+            if (mes == 1 || mes == 2) {
+                mes += 12;
+                anyo -= 1;
+            }
+
+            //Primera variable para el resultado delk calculo donde se utiliza el mes insertado
+            let resultado1 = parseInt(((mes + 1) * 3) / 5);
+            console.log(resultado1);
+            //Segunda variable donde se utiliza el año insertado y se divide por 4
+            let resultado2 = parseInt(anyo / 4);
+            console.log(resultado2);
+            //Tercera variable donde se utiliza el año insertado y se divide entre 100
+            let resultado3 = anyo / 100;
+            //Cuarta variable donde se utiliza el año insertado y se divide entre 400
+            let resultado4 = anyo / 400;
+            //Variable donde se suma el dia, el doble del mes, el año y los resultados de las vaiables anteriores salvo el resultado3, que ese se resta, y se suma por ultimo 2
+            let resultado5 = dia + (2 * mes) + anyo + resultado1 + resultado2 - resultado3 + resultado4 + 2;
+            //Dividir el resultado anterior por 7
+            let resultado6 = resultado5 / 7;
+            //Resta del resultado 5 menos, el resultado 6 multiplicado por 7
+            let resultado7 = resultado5 - ((resultado6) * 7);
+
+            console.log(resultado7);
+            //Dependiendo del resultado de la variable resultado7, de 0 a 6, se mostrará el dia de la semana que es de del Sábado a viernes
+            let diasemana = "";
+            if(resultado7 == 0){
+                diasemana = "SABADO";
+            } else if(resultado7 == 1){
+                diasemana = "DOMINGO";
+            } else if(resultado7 == 2){
+                diasemana = "LUNES";
+            } else if(resultado7 == 3){
+                diasemana = "MARTES";
+            } else if(resultado7 == 4){
+                diasemana = "MIERCOLES";
+            } else if(resultado7 == 5){
+                diasemana = "JUEVES";
+            } else if(resultado7 == 6){
+                diasemana = "VIERNES";
+            }
+
+            //Mostrar el día de la semana en el elemento con id "mensaje"
+            let mensaje = document.getElementById("mensaje");
+            mensaje.innerText = "El día de la semana es: " + diasemana;
+        }
+    </script>
+</head>
+<body>
+    <h1>Dia de la semana</h1>
+    Día <input type="number" id="cajadia" /><br/><br/>
+    Mes <input type="number" id="cajames" /><br/><br/>
+    Año <input type="number" id="cajaanyo" /><br/><br/>
+    <button onclick="calcularDia()">Calcular día semana</button>
+    <h3 id="mensaje"></h3>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+    
+    <script>
+        function cambiarImagen() {
+            //recuperamos el elemeto img llamado imagen
+            let img = document.getElementById("imagen");
+            //cambiamos una imagen por otra imagen
+            img.src = "images/golf.jpg";
+        }
+
+        //funcion que devuelva nla imagen que habia ntes de pasar el raton por encima de la imagen del perro
+        function salirImagen() {
+            let img = document.getElementById("imagen");
+            img.src = "images/dog.jpg";
+        }
+
+        function cambiarTexto() {
+            //RECUPERAMOS EL TITULO
+            let texto = document.getElementById("titulo");
+            //CAMBIAMOS EL TEXTO
+            texto.innerText = "Voilá... Soy un texto diferenteee!!";
+            //Ponemos el texto del h1 en azul
+            texto.style.color = "blue";
+        }
+    </script>
+</head>
+<body>
+    <h1>Elementos HTML y propiedades</h1>
+    <h2 id="titulo" onclick="cambiarTexto()">Soy un texto nuevo...</h2>
+    <img src="images/dog.jpg" id="imagen" 
+    onmouseover="cambiarImagen()" 
+    onmouseout="salirImagen()"/>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calcularSalarioTotal() {
+            //Obtener el valor de horas trabajadas
+            let horasTrabajadas = parseInt(document.getElementById("horasTrabajadas").value);
+            //Obtener el valor del salario por hora trabajada
+            let salarioPorHora = parseInt(document.getElementById("salarioPorHora").value);
+
+            //Declaro una variable para el salario total
+            let salarioTotal = 0;
+
+            //Si el numero de horas es mayor a 36 horas, cobrará 2 euros más por cada hora extra trabajada
+            if (horasTrabajadas > 36) {
+                let horasExtras = horasTrabajadas - 36;
+                //Por cada hora extra trabaja, cobrará el importe del salario por hora mas 2 euros adicionales
+                salarioTotal = (36 * salarioPorHora) + (horasExtras * (salarioPorHora + 2));
+
+                //Meto en el h3 salariototal el valor del salario total calculado con horas extras
+                document.getElementById("salariototal").innerText = "El salario total es: " + salarioTotal + " euros";
+                
+            } else {
+                //Si no hay horas extras, el salario sera las horas trabajadas por salario hora
+                salarioTotal = horasTrabajadas * salarioPorHora;
+
+                //Meto en el h3 salariototal el valor del salario total calculado sin horas extras
+                document.getElementById("salariototal").innerText = "El salario total es: " + salarioTotal + " euros";
+                
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>Horas trabajadas y salario por hora</h1>
+    <!-- crear dos cajas de texto: una para ingresar horas trabajadas totales y otra para ingresar el salario por hora trabajada -->
+    Horas trabajadas totales: <input type="number" id="horasTrabajadas" /><br/>
+    Salario por hora trabajada: <input type="number" id="salarioPorHora" /><br/>
+
+    <!-- boton para que al hacer click saque el salario total segun las horas trabajadas -->
+    <button type="button" onclick="calcularSalarioTotal()">Calcular salario total</button>
+
+    <h3 id="salariototal"></h3>
+</body>
+</html>

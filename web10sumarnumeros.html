@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sumarNumeros() {
+            //Obtener los valores de los inputs
+            let caja1 = document.getElementById("cajanumero1").value;
+            //Recuperamos el elemento cajanumero2 y leemos su valor
+            let caja2 = document.getElementById("cajanumero2").value;
+            //Recuperamos el elemento mensaje
+            let mensaje = document.getElementById("mensaje");
+
+            //Quiero el valor de caja1
+            let valor1 = parseInt(caja1);
+            //Quiero el valor de caja2
+            let valor2 = parseInt(caja2);
+            //Sumamos los dos valores
+            let suma = valor1 + valor2;
+
+            //Mostrar el resultado en un mensaje
+            document.getElementById("mensaje").innerText = "La suma de los números es: " + suma;
+        }
+        </script>
+</head>
+<body>
+    <h1>Suma de dos números</h1>
+    
+        //Crear dos cajas de texto para introducir dos números
+        Número 1:<br/>
+        <input type="number" id="cajanumero1" placeholder="Número 1" />
+        <p/>
+        Número 2: <br/>
+        <input type="number" id="cajanumero2" placeholder="Número 2" />
+        <p/>
+        <button type="button" onclick="sumarNumeros()">Sumar números</button>
+        <p/><p/>
+    <h3 id="mensaje"></h3>
+</body>
+</html>

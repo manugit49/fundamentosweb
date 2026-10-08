@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function encontrarMaxMin() {
+            //Recuperamos los valores de las cajas de texto
+            let numero1 = parseInt(document.getElementById("cajanumero1").value);
+            //Recuperamos el valor de la caja de texto 2
+            let caja2 = document.getElementById("cajanumero2");
+            let numero2 = parseInt(caja2.value);
+
+            //Recuperamos el valor de la caja de texto 3
+            let numero3 = parseInt(document.getElementById("cajanumero3").value);
+
+            //Declaramos las variables para el maximo y el minimo
+            let max = 0;
+            let min = 0;
+
+            //Encontrar el mayor
+            if (numero1 > numero2 && numero1 > numero3) {
+                max = numero1;
+            } else if (numero2 > numero1 && numero2 > numero3) {
+                max = numero2;
+            } else {
+                max = numero3;
+            }
+
+            //Encontrar el menor
+            if (numero1 < numero2 && numero1 < numero3) {
+                min = numero1;
+            } else if (numero2 < numero1 && numero2 < numero3) {
+                min = numero2;
+            } else {
+                min = numero3;
+            }
+
+            let mensaje = document.getElementById("mensaje");
+
+            mensaje.innerText = "El mayor es: " + max + " y el menor es: " + min;
+        }
+    </script>
+</head>
+<body>
+    <h1>Tres numeros y vemos cual es el mayor y cual es el menor</h1>
+    Numero 1: <input type="number" id="cajanumero1" />
+    <p/>
+    Numero 2: <input type="number" id="cajanumero2" />
+    <p/>
+    Numero 3: <input type="number" id="cajanumero3" />
+    <p/>
+    <button type="button" onclick="encontrarMaxMin()">Encontrar Mayor y Menor</button>
+    <p/><p/>
+    <h3 id="mensaje"></h3>
+</body>
+</html>
