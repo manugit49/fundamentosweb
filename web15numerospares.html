@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function numerosPares(){
+            //recuperamos la lista de numeros para el dibujo
+            let listanumeros = document.getElementById("listanumeros");
+            
+            let contenido = "";
+            //Necesitamos recuperar los numeros pares contenidos entre 1 y 20
+            for (let i = 1; i <= 20; i++) {
+                //Preguntamos sobre que numeros son pares o divisible entre 2
+                if(i % 2 == 0){// SI NUMERO PAR
+                    contenido += "<li>" + i + "</li>";
+                }
+            }
+            //dIBUJAMOS EN LA LISTA EL CONTENIDO
+            listanumeros.innerHTML = contenido;
+
+        }
+    </script>
+</head>
+<body>
+    <h1>numeros pares</h1>
+    <button onclick="numerosPares()">
+        Mostrar pares
+    </button>
+    <ul id="listanumeros">
+        
+    </ul>
+</body>
+</html>

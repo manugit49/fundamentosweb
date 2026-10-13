@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ejecutarBucleFor() {
+            //SE INICIA EN UN NUMERO E INDICAMOS
+            //HASTA QUE NUMERO FINALIZA Y CUANTO SUMA
+            //pOR EJEMPLO, INCIO =6 HASTA 12, DE UNO EN UNO
+            let texto = "";
+            for(let i =  1; i <= 8; i++){
+                //Guardamos en al variable texto el valor de i
+                texto += i + ", ";
+            }
+
+            //Recuperamos resultado
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = texto;
+        }
+
+        function ejecutarWhile() {
+            //estos bucles son iguales pero no sabemos hasta cuando se cumplira la función
+            let contador = 1;
+            //Mientras contador no llegue a 14, hacemos instrucciones
+            let texto= "";
+            while (contador <= 14){
+                //Guardamos en el texto el contador
+                texto += contador + ", ";
+                //Incrementamos en uno el contador para cada vuelta del bucle
+                contador++;
+            }
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = texto;
+        }
+    </script>
+</head>
+<body>
+    <h1>Sintaxis de bucles</h1>
+    <button onclick="ejecutarBucleFor()">Ejecutar for</button>
+    <button onclick="ejecutarWhile()">Ejecutar while</button>
+    <p id="resultado"></p>
+</body>
+</html>

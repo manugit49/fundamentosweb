@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let arraynombres = ["Juan", "Maria", "Javier"];
+
+        function addName(){
+
+        }
+
+        function dibujarNombres(){
+            //recuperamos el elemento lista para dibujar
+            let lista = document.getElementById("listanombres");
+            //dibujamos los nombres en la lista
+            let contenido = "";
+            for(let nombre of arraynombres){
+                //dibujamos el contenido
+                contenido += "<li>" + nombre + "</li>";
+            }
+            //dibujamos el contenido en la lista
+            lista.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Array de nombres</h1>
+    Introduzca nombre <input type="text" id="cajanombre"/>
+    <button onclick="dibujarNombres()">Añadir nombre</button>
+    <ul id="listanombres"></ul>
+</body>
+</html>

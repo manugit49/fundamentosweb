@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function tablaMultiplicar() {
+        //Necesito contenido donde ir almacenando los valores resultado para el dibujo que mostraremos en la pagina
+        let contenido = "";
+        //Variable para almacenar la lista de multiplicar
+        let listamultiplicar = document.getElementById("listamultiplicar");
+        //Recupero la caja numero y el documento buscar la cajanumero
+        let cajanumero = document.getElementById("cajanumero");
+        //recuperamos el valor del numero de la caja
+        let numero = parseInt(cajanumero.value);
+        //Funcion que genera los valores multiplicando el 9 por los valores del 1 al 10
+        
+            //Bucle para recorrer los valores a multiplicar por 9 para ir generando el resultado y concatenandolo para guardar en la variable contenido
+            for (let i = 1; i <= 10; i++){
+                //Producto de cada valor por 9
+                let producto = numero * i;
+                console.log(producto);
+                //Guardamos solo el resultado guardado en producto y concatenamos el resultado en cada pasada del bucle
+                contenido += "<li>" + producto + "</li>";
+            }
+            //En listaMultiplicar guardamos el valor del contenido como objeto html
+            listamultiplicar.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Tabla de multiplicar</h1>
+    Introduca un numero <input type="number" id="cajanumero" />
+    <button onclick="tablaMultiplicar()">
+        Mostrar valores tabla multiplicar del numero introducido
+    </button>
+    <!--Lista desordenada para mostrar los valores del resultado-->
+    <ul id="listamultiplicar"></ul>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cambiarImagen(){
+            //Recuperamos un array con todass las imagenes
+            let imagenes = document.getElementsByTagName("img");
+            //Recorremos cada imagen, comenzando en 0 y terminando en length - 1
+            //for (let i = 0; i < imagenes.length; i++){
+                //almcaenamos cada imagen en una variables
+                //con la que recorremos
+                //let img = imagenes[i];
+                //modificamos la imagen
+                //img.src = "images/golf.jpg";
+            //}
+            //Con variable de referencia
+            for (let img of imagenes){
+                img.src = "images/golf.jpg";
+            }
+        }
+    </script>
+    <style>
+        img { 
+            width: 100px; height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array de imágenes</h1>
+    <button onclick="cambiarImagen()">Cambiar imágen</button>
+    <img src="images/dog.jpg" />
+    <img src="images/dog.jpg" />
+    <img src="images/dog.jpg" />
+    <img src="images/dog.jpg" />
+</body>
+</html>

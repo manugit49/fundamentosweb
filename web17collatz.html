@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function collatz(){
+            //Recuperamos el numero introducido
+            let numero = document.getElementById("cajanumero").value;
+            //Necesitamos variable contenido para ir metiendo todos los numeros prodyucto de operaciones para llegar nal numero 1
+            let contenido = "";
+            //Mientras no se llegue al numero 1 que es el numero final segun la conjetura de collatz
+            while(numero != 1) {
+                //Si el numero es par
+                if(numero % 2 == 0){
+                    //Se divide entre 2
+                    numero = numero / 2;
+                }
+                else{
+                    numero = numero * 3 + 1;
+                }
+                //Guardamos en contenido cada operacion y concatenamos con ncada pasada del bucle
+                contenido += numero + ", ";
+            }
+            
+            //Guardo en listavalores el objeto que contendra los valores de cada operacion
+            listavalores= document.getElementById("listavalorescollatz");
+
+            //Guardamos el contenido con los vaslores de las operaciones
+            listavalores.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Conjetura de collatz</h1>
+    Introduzca un numero <input type="number" id="cajanumero" />
+    <button onclick="collatz()">
+        Mostrar valores tabla multiplicar del numero introducido
+    </button>
+    <!--Lista desordenada para mostrar los valores del resultado-->
+    <ul id="listavalorescollatz"></ul>
+</body>
+</html>
