@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cargarSelectImagenes(){
+            let imagenes = ["amapola.jpg", "helecho.jpg", "manzanilla.jpg", "ortiga.jpg", "petunia.jpg"];
+            //Crear variable contenido para ir guardadno los options del select con los valores de las imagenes
+            let contenido = "";
+            //Recuperamos el elemento select con id selectimagenes
+            let select = document.getElementById("selectimagenes");
+            //Recorremos el array de imagenes con un bucle for con variable de referencia
+            for (let imagen of imagenes){
+                console.log(imagen);
+                //Relleno el valor de cada tag option con el nombre de la imagen
+                contenido += "<option>" + imagen + "</option>";
+            }
+
+            //Añadimos el contenido con los options al select
+            select.innerHTML = contenido;
+
+        }
+
+        function seleccionarImagen(){
+            
+
+            //Recuperamos el elemento select con id selectimagenes ya cargado con los nombres
+            let opciones = document.getElementById("selectimagenes");
+            //Recuperamos el nombre de la imagen seleccionada
+            let nombreImagen = opciones.value;
+            //Recuperamos todos los elementos de img
+            let imagenes = document.getElementsByTagName("img");
+            //Recorremos el select en un bucle for con variable de referencia con los elemetos img
+            for (let img of imagenes){
+                img.src = "images/" + nombreImagen;
+            }
+        }
+
+        window.onload = function() {
+            cargarSelectImagenes();
+        }
+    </script>
+    <style>
+        img {
+            width: 100px; height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selección de imágenes</h1>
+    Seleccione una imágen: <select id="selectimagenes"></select>
+    <button onclick="seleccionarImagen()">Mostrar imágen</button>
+    <br/>
+    <img /><img /><img /><img /><img />
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function mostrarFavoritos(){
+            //Recuperamos la lista de inputs
+            let inputs = document.getElementsByTagName("input");
+            //Necesito una variable que vaya guardando los favoritos
+            let favoritos = "";
+            //Crear variable contenido para posteriormente guardar los deportes favoritos
+            let contenido = "";
+            //Recorremos la lista de cada elemento input
+            for(let input of inputs){
+                //Si el elemento input esta seleccionado
+                if(input.checked){
+                    //pasa a formar parte su valor de la lista de favoritos
+                    favoritos += input.value + ", ";
+
+
+                }
+            }
+            //En la variable contenido guardamos la lista de favoritos
+            contenido = favoritos;
+            //Recuperamos el elemento de id resultado
+            let resultado = document.getElementById("resultado");
+            //Pintamos el resultado
+            resultado.innerText = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Deportes favoritos</h1>
+    <button onclick="mostrarFavoritos()">Ver favoritos</button></p>
+    <input type="checkbox" value="futbol" />Fútbol<br/>
+    <input type="checkbox" value="baloncesto" />Baloncesto<br/>
+    <input type="checkbox" value="balonmano" />Balonmano<br/>
+    <input type="checkbox" value="voleibol" />Voleibol<br/>
+    <input type="checkbox" value="waterpolo" />Waterpolo<br/>
+    <h2 id="resultado"></h2>
+</body>
+</html>

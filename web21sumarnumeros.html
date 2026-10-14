@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Recuperar las cajas de texto o input
+        let inputs = document.getElementsByTagName("input");
+        function sumarNumeros(){
+            
+            //Necesito variable que recoja cada numero introducido en las cajas
+            let numero = "";
+            //Variable suma que contendra la suma de los numeros
+            let suma = 0;
+            //Recorremos cada elemento de inputs
+            for(let input of inputs){
+                //Cogemos el valor de cada elemento input
+                numero = parseInt(input.value);
+                ///console.log(numero);
+                //Almacenamos la suma de los numeros por cada vuelta del bucle
+                suma += numero;
+
+            }
+            //Recuperamos el elemento html resultado
+            resultado = document.getElementById("resultado");
+            //Dibujamos la suma de los numeros en resultado
+            resultado.innerText = "La suma es : " + suma;
+        }
+
+        function generarNumeros(){
+            console.clear();
+            //Recorremos todos los elementos input
+            for(let input of inputs){
+                //Necesito variable random que genere un numero de 0 a 1 multiplicado por 100 y sumando 1
+                let random = parseInt(Math.random()  * 100 ) + 1;
+                console.log(random);
+                input.value = random;
+            }
+            
+        }
+
+        window.onload = function{
+            generarNumeros();
+        }
+    </script>
+</head>
+<body>
+    <h1>Suma de numeros</h1>
+    <!--Dibujar cinco input type de tipo text-->
+    <input type="text" /><br/>
+    <input type="text" /><br/>
+    <input type="text" /><br/>
+    <input type="text" /><br/>
+    <input type="text" /><br/>
+    <button onclick="sumarNumeros()">Sumar los numeros introducidos</button>
+    <button onclick="generarNumeros()">Generar números</button>
+    <h2 id="resultado"></h2>
+
+</body>
+</html>
