@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function cargarJugadores(){
+            //Indicamos la ruta del fichero donde tnemos la informacion
+            let path = "documents/jugadores.json";
+            //Leemos el fichero, esperando a que se termine de realizar la lectura
+            let response = await fetch(path);
+            //Convertimos la respuesta a un objeto json, esperando a que termine
+            let jugadores = await response.json();
+            //Necesito variable contenido para el dibujo de la información que mostraremos
+            let contenido = "";
+            //Recorremos la lista de jugadorres y pintamos en contenido una fila por cada jugador
+            for(let jugador of jugadores){
+                contenido += "<tr>";
+                contenido += `<td> ${jugador.jugador} </td>`;
+                contenido += `<td><img src=' ${jugador.imagen} '/></td>`;
+                contenido += "</tr>";
+            }
+            
+            //Recuperamos el elemento tabla con el id listajugadores
+            let tabla = document.getElementById("listajugadores");
+            //Pintamos las filas con contenido en el elemento tabla
+            tabla.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Nombre de jugadores y su imagen</h1>
+    <button onclick="cargarJugadores()">Cargar nombre e imagen de los jugadores</button>
+    <table border="1" id="listajugadores"></table>
+</body>
+</html>

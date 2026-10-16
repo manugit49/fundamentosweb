@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function leerJSONSimple(){
+            //Indico la ruta donde esta nuestro fichero
+            let path = "documents/tareas.json";
+            //leemos el fichero remoto. Espera y lee
+            let response = await fetch(path);
+            //el fichero tiene formato json,
+            //debemos convertirlo con la respuesta
+            //y el método .json() (espera...)
+            let datos = await response.json();
+            //dibujamos a ver que nos sale
+            console.log(datos);
+            let uno = datos.UNO;
+            let dos = datos.DOS;
+            //Dibujamos la tarea uno y dos dentro de resultado
+            //Recupero el elemento html con id resultado
+            let resultado = document.getElementById("resultado");
+            //Pintamos la tarea uno y dos en resultado
+            resultado.innerText = uno + ", " + dos;
+        }
+    </script>
+</head>
+<body>
+    <h1>Lectura documento JSON</h1>
+    <button onclick="leerJSONSimple()">Leer JSON simple</button>
+    <p id="resultado"></p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function leerJSONCompuesto(){
+            //Indico la ruta de nuestro fichero
+            let path = "documents/clientes.json";
+            //Leemos el fichero remoto (espera...)
+            let response = await fetch(path);
+            //convertimos a json los datos de la respuesta
+            let datos = await response.json();
+            console.log(datos);
+            //Necesitamos un contenido html para el dibujo
+            let contenido= "";
+            //viene un conjunto de clientes
+            //recorremo cada cliente de los datos
+            for(let cliente of datos){
+                //Dibujo el nombre de cada cliente en el elemento de la lista
+                contenido += "<li>" + cliente.nombre + "</li>";
+            }
+            //Recupero el elemento html con id listaclientes
+            let listaclientes = document.getElementById("listaclientes");
+            //Pintamos el contenido en la listaclientes
+            listaclientes.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Leer documento JSON compuesto</h1>
+    <button onclick="leerJSONCompuesto()">Leer fichero JSON</button>
+    <ul id="listaclientes"></ul>
+</body>
+</html>
