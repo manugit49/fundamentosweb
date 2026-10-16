@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Declaramos las mascotas para todos lo métodos/funciones
+        let arraymascotas = [];
+        function crearMascota(){
+            //Cada vez que el usuario pulse, necesitamos coger
+            //los datos de las cajas y crear una nueva mascota
+            //Recuperamos las cajas input
+            let cajanombre = document.getElementById("cajanombre");
+            let cajaraza = document.getElementById("cajaraza");
+            let cajaedad = document.getElementById("cajaedad");
+            //Creamos el objeto mascota
+            let mascota = new Object();
+            //Asignamos, con los valores de las cajas input, las propiedades del objeto
+            mascota.nombre = cajanombre.value;
+            mascota.raza = cajaraza.value;
+            mascota.edad = cajaedad.value;
+            //Por último, añadimos la mascota a nuestro array
+            arraymascotas.push(mascota);
+            //Dibujamos cuantas mascotas llevamos creadas
+            //dentro de titulonumero
+            //recuperamos titulonumero
+            let titulonumero = document.getElementById("titulonumero");
+            titulonumero.innerText = "Numero de mascotas: "
+                + arraymascotas.length;
+           
+
+        }
+
+        function dibujarMascota(){
+            //Necesitamos una variable para dibujar las filas en la tabla
+            let filas = "";
+            //Necesito recorrer las mascotas que hay en el array
+            for(let mascota of arraymascotas){
+                //Hacemos el dibujo de cada fila de la tabla
+                //y sus columnas para nombre, raza y edad
+                filas += "<tr>";
+                filas += "<td>" + mascota.nombre + "</td>";
+                filas += "<td>" + mascota.raza + "</td>";
+                filas += "<td>" + mascota.edad + "</td>";
+                filas += "</tr>";
+            }
+            //buscamos la tabla de mascotas
+            let tabla = document.getElementById("tablamascotas");
+            //Dibujamos, en la tabla, las filas
+            tabla.innerHTML = filas;
+        }
+    </script>
+</head>
+<body>
+    <h1>Array mascotas completo</h1>
+    <h3 style="color: blue" id="titulonumero"></h3>
+    <button onclick="crearMascota()">Crear mascota</button>
+    <button onclick="dibujarMascota()">Dibujar mascota</button><br/><br/>
+    Nombre: <input type="text" id="cajanombre" /><br/>
+    Raza: <input type="text" id="cajaraza" /><br/>
+    Edad: <input type="text" id="cajaedad" /><br/>
+    <table border="1" id="tablamascotas"></table>
+</body>
+</html>

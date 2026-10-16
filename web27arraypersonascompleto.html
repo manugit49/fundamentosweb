@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Declaramos el array de personas para todos los métodos/funciones
+        let arraypersonas = [
+            {
+                nombre: "Antonio",
+                email: "antonio@gmail.com"
+            },
+            
+            {
+                nombre: "Adrian",
+                email: "adrian@gmail.com"
+            }
+        ];
+
+        function nuevaPersona(){
+            //Cada vez que pulsa el usuario al botón de Nueva persona
+            //necesitamos los datos de las cajas de texto input y crear un nuevo objeto persona
+            let cajanombre = document.getElementById("cajanombre");
+            let cajaemail = document.getElementById("cajaemail");
+            //Creamos el objeto persona
+            let persona = new Object();
+            //Asignamos a las propiedades del objeto persona los valores de las cajas de texto input
+            persona.nombre = cajanombre.value;
+            persona.email = cajaemail.value;
+            //Por último, añadimos el objeto persona al array de personas
+            arraypersonas.push(persona);
+        }
+
+        function dibujarPersonas(){
+            //Necesito variable de nombre filas que almacene las filas con los datos de las personas
+            let filas = "";
+            //Recorrer las personas que tenemos en el array
+            for(let persona of arraypersonas){
+                //Hacemos el dibujo de cada fila de la tabla
+                //con las columnas de nombre y email
+                filas += "<tr><td>" + persona.nombre + "</td><td>" + persona.email + "</td></tr>";
+            }
+            //Buscamos la tabla de personas con el id tablapersonas
+            let tabla = document.getElementById("tablapersonas");
+            //Dibujamos las filas con las columnas de nombre y email en la tabla
+            tabla.innerHTML = filas;
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Array personas completo</h1>
+    Nombre: <input type="text" id="cajanombre" /><br/>
+    Email: <input type="text" id="cajaemail" /><br/><br>
+    <button onclick="nuevaPersona()">Nueva persona</button>
+    <button onclick="dibujarPersonas()">Dibujar personas</button>
+    <p></p>
+    <table border="1" id="tablapersonas"></table>
+</body>
+</html>
