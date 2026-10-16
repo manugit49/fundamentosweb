@@ -12,14 +12,16 @@
             let response = await fetch(path);
             //Convertimos la respuesta a un objeto json, esperando a que termine
             let jugadores = await response.json();
-            //Necesito variable contenido para el dibujo de la información que mostraremos
+            //Necesito variable contenido para el dibujo de la información de cada jugador
             let contenido = "";
-            //Recorremos la lista de jugadorres y pintamos en contenido una fila por cada jugador
+            //Recorremos la lista de jugadores y pintamos en contenido una fila por cada jugador
             for(let jugador of jugadores){
-                contenido += "<tr>";
-                contenido += `<td> ${jugador.jugador} </td>`;
-                contenido += `<td><img src=' ${jugador.imagen} '/></td>`;
-                contenido += "</tr>";
+                contenido += `
+                    <tr>
+                        <td> ${jugador.jugador} </td>
+                        <td><img src=' ${jugador.imagen} '/></td>;
+                    </tr>
+                `
             }
             
             //Recuperamos el elemento tabla con el id listajugadores
@@ -28,6 +30,12 @@
             tabla.innerHTML = contenido;
         }
     </script>
+    <style>
+        img{
+            width: 120px;
+            height: 120px;
+        }
+    </style>
 </head>
 <body>
     <h1>Nombre de jugadores y su imagen</h1>
