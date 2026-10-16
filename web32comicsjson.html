@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function listaJSONComics(){
+            //Indico la ruta de nuestro fichero
+            let path = "documents/comics.json";
+            //Leemos el fichero de texto de datos (esperando...)
+            let response = await fetch(path);
+            //convertimos a json los datos de la respuesta (esperando...)
+            let comics = await response.json();
+            //Mostramos los datos en la consola
+            console.log(comics);
+            //Necesito variable contenido para contener los datos referente a cada personaje de los comics
+            let contenido = "";
+            //Recorro el array de datos
+            for(let comic of comics){
+                //Variable contenido asignando los datos para el dibujo
+                contenido += `
+                    <tr>
+                        <td> ${comic.titulo}</td>
+                        <td><img src=' ${comic.imagen} '/></td>
+                        <td> ${comic.descripcion}</td>
+                    </tr>
+                `
+            }
+            //Recuperamos el elemento de tabla con id listacomics para meter el contenido
+            let listacomics = document.getElementById("listacomics");
+            //Pintamos en la tabla los datos del contenido
+            listacomics.innerHTML = contenido;
+        } 
+    </script>
+</head>
+<body>
+    <h1>Lista de comics</h1>
+    <button onclick="listaJSONComics()">Mostrar lista de comics</button>
+    <table border="1" id="listacomics"></table>
+</body>
+</html>
