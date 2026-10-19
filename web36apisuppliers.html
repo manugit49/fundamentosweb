@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function leerServicioSuppliers() {
+            //Indicamos la url de nuestro fichero
+            let url = "https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers";
+            //Realizamos petición al servicio api
+            let response = await fetch(url);
+            //Convertimos los datos en formato json
+            let datos = await response.json();
+            //Creamos variable contenido para el dibujo de los datos en la lista
+            let contenido = "";
+            //Recorremos todos los proveedores
+            for (let proveedor of datos.value) {
+                //Dibujamos el contenido de los elementos de lista en la variable contenido
+                contenido += `
+                    <li>${proveedor.SupplierID}</li> 
+                    <li>${proveedor.CompanyName}</li>
+                    `
+            }
+            //Recuperamos el elemento html llamado proveedor
+            let proveedor = document.getElementById("proveedor");
+            //Pintamos el contenido dentro de este elemento proveedor
+            proveedor.innerHTML = contenido;
+
+        }
+
+        async function buscarPorID() {
+            //Indicamos la url de nuestro fichero
+            let url = "https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers";
+            //Realizamos peticion al servicio api
+            let response = await fetch(url);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Creamos variable contenido para el dibujo de los datos
+            let contenido = "";
+            //Recorrer los elementos json hasta que coincida con el insertado y se muestren los datos
+            for(let IDCliente of datos.value)
+        }
+    </script>
+</head>
+<body>
+    <h1>Service Api Suppliers</h1>
+    <button onclick="leerServicioSuppliers()">Mostrar suppliers</button>
+    <ul id="proveedor"></ul>
+    <input type="text" id="buscar" placeholder="Buscar por ID..."/><br/>
+    <button onclick="buscarPorID()">Buscar</button>
+</body>
+</html>
