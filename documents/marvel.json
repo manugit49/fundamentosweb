@@ -1,0 +1,102 @@
+{
+   "Heroes": [
+    {
+      "hero": "Spider-Man",
+      "name": "Peter Benjamin Parker", 
+      "link": "https://www.marvel.com/characters/spider-man-peter-parker-ultimate-earth-6160",
+      "img":  "https://www.cinemascomics.com/wp-content/uploads/2026/02/spider-man-brand-new-day.jpg"
+    },
+    {
+      "hero": "Captain Marvel",
+      "name": "Carol Danvers", 
+      "link": "https://www.marvel.com/characters/captain-marvel-carol-danvers",
+      "img":  "https://cdn.kobo.com/book-images/19124680-8cb0-4ac9-87f6-c1fe6edcc517/1200/1200/False/marvel-s-captain-marvel.jpg"
+    },
+    {
+      "hero": "Hulk", 
+      "name": "Robert Bruce Banner",
+      "link": "https://www.marvel.com/characters/hulk-earth-928",
+      "img":  "https://cdn.kobo.com/book-images/d60d4ed1-7443-42e8-aa10-572fc3608981/1200/1200/False/marvel-verse-hulk.jpg"
+    },
+    {
+      "hero": "Black Widow", 
+      "name": "Natalia 'Natasha' Alianovna Romanova",
+      "link": "https://www.marvel.com/characters/black-widow-natasha-romanoff",
+      "img":  "https://cdn.kobo.com/book-images/be57f38a-7864-4f04-841d-6e7dd078ab2a/1200/1200/False/black-widow-88.jpg"
+    },
+    {
+      "hero": "Daredevil", 
+      "name": "Matthew Michael Murdock",
+      "link": "https://www.marvel.com/characters/daredevil-matthew-murdock",
+      "img":  "https://m.media-amazon.com/images/I/91lkLM4E2LL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "hero": "Wolverine", 
+      "name": "James Howlett",
+      "link": "http://marvel.com/characters/66/wolverine",
+      "img":  "https://m.media-amazon.com/images/I/81XVEpB1DmL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "hero": "Captain America", 
+      "name": "Steven Rogers",
+      "link": "https://www.marvel.com/characters/captain-america-steve-rogers",
+      "img":  "https://marmota.me/wp-content/uploads/2025/08/Captain-America-001-2025-Digital-Shan-Empire-00001-scaled.jpg"
+    },
+    {
+      "hero": "Iron Man", 
+      "name": "Anthony Edward 'Tony' Stark",
+      "link": "https://www.marvel.com/characters/iron-man-tony-stark",
+      "img":  "https://images.cdn2.buscalibre.com/fit-in/660x660/b0/2b/b02b8436ec7bb1e24d5fc49a2c1539cf.jpg"
+    },
+    {
+      "hero": "Thor", 
+      "name": "Thor Odinson",
+      "link": "https://www.marvel.com/characters/thor-thor-odinson",
+      "img":  "https://www.universal-comics.com/media/products/155933/155933-0-big.jpg"
+    }
+  ],
+  "Villains": [
+    {
+      "hero": "Dr. Doom",
+      "name": "Victor von Doom", 
+      "link": "https://www.marvel.com/characters/doctor-doom-victor-von-doom",
+      "img":  "https://i.blogs.es/1b92a5/one-world-under-doom-6/450_1000.webp"
+    },
+    {
+      "hero": "Mystique",
+      "name": "Unrevealed", 
+      "link": "https://www.marvel.com/characters/mystique-age-of-apocalypse",
+      "img":  "https://tajmahalcomics.com/wp-content/uploads/2025/01/2384243_xl.jpg"
+    },
+    {
+      "hero": "Red Skull",
+      "name": "Johann Shmidt", 
+      "link": "https://www.marvel.com/characters/red-skull-johann-shmidt",
+      "img":  "https://m.media-amazon.com/images/I/91EN-F48xVL._UF1000,1000_QL80_.jpg"
+    },
+    {
+      "hero": "Ronan",
+      "name": "Ronan", 
+      "link": "https://www.marvel.com/characters/ronan",
+      "img":  "https://www.universal-comics.com/media/products/135435/135435-0-big.jpg"
+    },
+    {
+      "hero": "Magneto",
+      "name": "Max Eisenhardt", 
+      "link": "https://www.marvel.com/characters/magneto-ultimate",
+      "img":  "https://i1.whakoom.com/large/2d/04/5007092007a94d469d1e960b587bac11.jpg"
+    },
+    {
+      "hero": "Thanos",
+      "name": "Thanos", 
+      "link": "https://www.marvel.com/characters/thanos",
+      "img":  "https://www.universal-comics.com/media/products/141851/141851-0-big.jpg"
+    },
+    {
+      "hero": "Black Cat",
+      "name": "Felicia Hardy", 
+      "link": "https://www.marvel.com/characters/black-cat-felicia-hardy",
+      "img":  "https://cdn.kobo.com/book-images/626ea308-369b-4929-941a-fd632d2cc3a4/353/569/90/False/black-cat-15.jpg"
+    }
+   ]
+}

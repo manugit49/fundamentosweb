@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function cargarPeliculas() {
+            //Indicamos la ruta de nuestro fichero
+            let path = "documents/cine.json";
+            //Hacemos ua peticion al servidor de lectura del fichero de datos (esperando...)
+            let response = await fetch(path);
+            //Convertimos los datos de la respuesta a json
+            let datos = await response.json();
+            //Creamos variable contenido para el dibujo
+            let contenido = "";
+            //Recorremos los datos de peliculas
+            for(let peli of datos.Peliculas){
+                //Rellenamos el select con etiqueta <option> y el titulo de la pelicula
+                contenido += `
+                    <option> ${peli.Titulo} </option>
+                    `
+            }
+            //Recuperamos el elemento html select y le asignamos el contenido
+            let select = document.getElementById("listapeliculas");
+            //Dibujamos el contenido en el select
+            select.innerHTML = contenido;
+        }
+
+        async function buscarPelicula() {
+            //Indicamos la ruta de nuestro fichero
+            let path = "documents/cine.json";
+            //Hacemos una petición al servidor de lectura del fichero de datos(esperando...)
+            let response = await fetch(path);
+            //Convertimos los datos de la respuesta a json
+            let datos = await response.json();
+            //Necesitamos el valor de la pelicula seleccionada
+            //Recuperamos el select del html
+            let select = document.getElementById("listapeliculas");
+            //Recuperamos el nombre de la pelicula
+            let nombrepeli = select.value;
+            //Debemos recorrer todas las peliculas y comparar
+            //El titulo que recorremos con nombrepeli
+            for(let peli of datos.Peliculas){
+                if(peli.Titulo == nombrepeli){
+                    //Tenemos la pelicula seleccionada
+                    //Bsucamos resultado dentro de html
+                    let resultado = document.getElementById("resultado");
+                    //Pintamos el argumento
+                    resultado.innerHTML = `
+                        <p> ${peli.Argumento} </p>
+                        <p> ${peli.Director} </p>
+                        <p> ${peli.Genero} </p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/${peli.YouTube}?si=gQ80I79t3kvCMU1r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        `
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Seleccionamos una pelicula</h1>
+    <button onclick="cargarPeliculas()">Cargar peliculas</button>
+    <select id="listapeliculas"></select>
+    <button onclick="buscarPelicula()">Buscar pelicula</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

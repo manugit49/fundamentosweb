@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function cargarHeroes() {
+            //Indicamos la ruta de nuestro fichero
+            let path = "documents/marvel.json";
+            //Hacemos una peticion al servidor de lectura del fichero de datos (esperando...)
+            let response = await fetch(path);
+            //Convertimos los datos de la respuesta a json
+            let datos = await response.json();
+            //creamos variable contenido para el dibujo
+            let contenido = "";
+            //Recorremos los datos de heroes
+            for (let heroe of datos.Heroes) {
+                console.log(heroe.img)
+                //Guardamos en contenido el html correspondiente al heroe
+                contenido += ` 
+                    <h1> ${heroe.hero} </h1>
+                        <h3> ${heroe.name} </h3>
+                        <p> <a href="${heroe.link}">${heroe.link}</a> </p>
+                        <p> <img src="${heroe.img}" /> </p>
+                    <hr>
+                `       
+
+            }
+            //Recuperamos el div resultado del html para guardar los heroes
+            let resultado = document.getElementById("resultado");
+            //Pintamos los heroes cargados
+            resultado.innerHTML = contenido;
+        }
+
+        async function cargarVillanos() {
+            //Indicamos la ruta de nuestro fichero
+            let path = "documents/marvel.json";
+            //Hacemos una peticion al servidor de lectura del fichero de datos (esperando...)
+            let response = await fetch(path);
+            //Convertimos los datos de la respuesta a json
+            let datos = await response.json();
+            //Creamos variable contenido para el dibujo
+            let contenido = "";
+            //Recorremos los datos de villanos
+            for (let villano of datos.Villains) {
+                //Guardamos en contenido de html correspondiente a cada villano
+                contenido += `
+                    <h1> ${villano.hero} </h1>
+                    <h3> ${villano.name} </h3>
+                    <p> <a href="${villano.link}">${villano.link}</a></p>
+                    <p><img src="${villano.img}" /></p>
+                    <hr>
+                    `
+            }
+            //Recuperamos el div resultado del html para guardar los villanos
+            let resultado = document.getElementById("resultado");
+            //Pintamos los villanos cargados
+            resultado.innerHTML = contenido;
+
+        }
+    </script>
+    <style>
+        img{
+            width: 100px;
+            height: 130px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Heroes y villanos</h1>
+    <button onclick="cargarHeroes()">Mostrar heroes</button><br/><br/>
+    <button onclick="cargarVillanos()">Mostrar villanos</button>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>
