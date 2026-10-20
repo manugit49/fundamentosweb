@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function buscarEmpleado() {
+            //Recupero el input con el id a buscar
+            let cajaid = document.getElementById("cajaid");
+            //Guardo el valor en una variable idempleado
+            let idempleado = cajaid.value;
+            //Indicamos la url con los datos del empleado segun id a buscar
+            let url = `https://apiempleadosfullstack.azurewebsites.net/api/Empleados/${idempleado}`;
+            //Realizamos la petición al servicio
+            let response = await fetch(url);
+            //Convertimos los datos
+            let datos = await response.json();
+            //Recupero el elemento div para poder dibujar el contenido html dentro
+            let div = document.getElementById("datosempleado");
+            console.log(url);
+            //Dibujamos el contenido html dentro del div
+            div.innerHTML = `
+                <p>${datos.idEmpleado}</p>
+                <p>${datos.apellido}</p>
+                <p>${datos.oficio}</p>
+                <p>${datos.salario}</p>
+                <p>${datos.departamento}</p>
+            `
+        }
+    </script>
+</head>
+<body>
+    <h1>Buscar Empleado Api</h1>
+    Id del Empleado: <input type="number" id="cajaid" /><br/><br/>
+    <button onclick="buscarEmpleado()">Buscar empleado</button>
+    <div id="datosempleado"></div>
+</body>
+</html>

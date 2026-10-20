@@ -18,8 +18,8 @@
             for (let proveedor of datos.value) {
                 //Dibujamos el contenido de los elementos de lista en la variable contenido
                 contenido += `
-                    <li>${proveedor.SupplierID}</li> 
-                    <li>${proveedor.CompanyName}</li>
+                    <li><strong class="rojo">ID:</strong> ${proveedor.SupplierID}</li> 
+                    <li><strong class="rojo">Compañía:</strong> ${proveedor.CompanyName}</li><p>
                     `
             }
             //Recuperamos el elemento html llamado proveedor
@@ -38,16 +38,62 @@
             let datos = await response.json();
             //Creamos variable contenido para el dibujo de los datos
             let contenido = "";
+            //Recuperamos el elemento input que contiene el id buscado
+            let id = parseInt(document.getElementById("buscar").value);
+            //Recuperamos elemento div para dibujar del dibujo html
+            let div = document.getElementById("idbuscado");
             //Recorrer los elementos json hasta que coincida con el insertado y se muestren los datos
-            for(let IDCliente of datos.value)
+            for(let proveedor of datos.value) {
+                //Comparo el id buscado con el id de cada proveedor encontrado el fichero
+                if(proveedor.SupplierID == id) {
+                    //Si coincide, pintamos el contenido dentro de este
+                    div.innerHTML = `
+                        <p> <strong class="rojo">Compañia:</strong> ${proveedor.CompanyName} </p>
+                        <p> <strong class="rojo">Contacto:</strong> ${proveedor.ContactName} </p>
+                        <p> <strong class="rojo">Título:</strong> ${proveedor.ContactTitle} </p>
+                        <p> <strong class="rojo">Dirección:</strong> ${proveedor.Address} </p>
+                        <p> <strong class="rojo">Ciudad:</strong> ${proveedor.City} </p>
+                        <p> <strong class="rojo">Región:</strong> ${proveedor.Region} </p>
+                        <p> <strong class="rojo">Código Postal:</strong> ${proveedor.PostalCode} </p>
+                        <p> <strong class="rojo">Pais:</strong> ${proveedor.Country} </p>
+                        <p> <strong class="rojo">Teléfono:</strong> ${proveedor.Phone} </p>
+                        <p> <strong class="rojo">Fax:</strong> ${proveedor.Fax} </p>
+                        <p> <strong class="rojo">Página:</strong> ${proveedor.HomePage} </p>
+                        `
+                    /*contenido += ` Los datos con el ID ${proveedor.SupplierID} son:<br/><br/>
+                        <li> ${proveedor.CompanyName} </li>
+                        <li> ${proveedor.ContactName} </li>
+                        <li> ${proveedor.ContactTitle} </li>
+                        <li> ${proveedor.Address} </li>
+                        <li> ${proveedor.City} </li>
+                        <li> ${proveedor.Region} </li>
+                        <li> ${proveedor.PostalCode} </li>
+                        <li> ${proveedor.Country} </li>
+                        <li> ${proveedor.Phone} </li>
+                        <li> ${proveedor.Fax} </li>
+                        <li> ${proveedor.HomePage} </li>
+                    `*/
+                }
+            }
+            //Recuperamos el elemento html de lista idbuscado
+            //let lista = document.getElementById("idbuscado");
+            //Pintamos el contenido dentro de la lista
+            //lista.innerHTML = contenido;
         }
     </script>
+    <style>
+        strong.rojo{
+            color:red;
+        }
+    </style>
 </head>
 <body>
     <h1>Service Api Suppliers</h1>
     <button onclick="leerServicioSuppliers()">Mostrar suppliers</button>
-    <ul id="proveedor"></ul>
     <input type="text" id="buscar" placeholder="Buscar por ID..."/><br/>
     <button onclick="buscarPorID()">Buscar</button>
+    <!--<ul id="idbuscado"></ul>-->
+    <ul id="proveedor"></ul>
+    <div id="idbuscado"></div>
 </body>
 </html>

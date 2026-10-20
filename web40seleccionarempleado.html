@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function cargarApellidos() {
+            //Indicamos la url que tiene los datos de empleados
+            let url = "https://apiempleadosfullstack.azurewebsites.net/api/Empleados";
+            //Realizamos la petición al servicio
+            let response = await fetch(url);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Creamos variable options que pinte en el select las option correspondiente a cada apellido a cargar
+            let options = "";
+            //Recorremos los datos de empleados
+            for(let d of datos){
+                options += `
+                    <option> ${d.apellido} </option>
+                `
+            }
+            //Recuperamos el elemento select del dibujo html
+            let select = document.getElementById("listaapellidos");
+            //Pintamos el contenido, es decir, las option
+            select.innerHTML = options;
+        }
+
+        async function buscarEmpleado() {
+            //Recupero el elemento select del dibujo html
+            let select = document.getElementById("listaapellidos");
+            //Guardo el valor seleccionado del select en una variable opcion
+            let opcion = select.value;
+            console.log(opcion);
+            //Indicamos la url que tiene los datos de empleado y buscamos en la api por la opcion seleccionada en el select
+            let url = `https://apiempleadosfullstack.azurewebsites.net/api/Empleados/${opcion}`;
+            console.log(url);
+            //Realizamos la petición al servicio
+            let response = await fetch(url);
+            //Convertimos los datos a formato json
+            let datos = response.json();
+            //Recupero el elemento div del dibujo html
+            let div = document.getElementById("datosempleado");
+            //Dibujamos el contenido html dentro del div
+            div.innerHTML = `
+                <p>${datos.idEmpleado}</p>
+                <p>${datos.apellido}</p>
+                <p>${datos.oficio}</p>
+                <p>${datos.salario}</p>
+                <p>${datos.departamento}</p>
+            `
+        }
+    </script>
+</head>
+<body>
+    <h1>Api Selección Empleado</h1>
+    <button onclick="cargarApellidos()">Cargar apellidos</button>
+    <select id="listaapellidos"></select><p></p>
+    <button onclick="buscarEmpleado()">Buscar empleado</button>
+    <div id="datosempleado"></div>
+</body>
+</html>
