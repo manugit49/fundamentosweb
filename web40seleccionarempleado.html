@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        let url = "https://apiempleadosfullstack.azurewebsites.net/";
         async function cargarApellidos() {
-            //Indicamos la url que tiene los datos de empleados
-            let url = "https://apiempleadosfullstack.azurewebsites.net/api/Empleados";
+            //Incluimos la peticón en la url
+            let request = url + "api/Empleados";
             //Realizamos la petición al servicio
-            let response = await fetch(url);
+            let response = await fetch(request);
             //Convertimos los datos a formato json
             let datos = await response.json();
             //Creamos variable options que pinte en el select las option correspondiente a cada apellido a cargar
@@ -17,9 +18,10 @@
             //Recorremos los datos de empleados
             for(let d of datos){
                 options += `
-                    <option> ${d.apellido} </option>
+                    <option value="${d.idEmpleado}"> ${d.apellido} </option>
                 `
             }
+            console.log(options);
             //Recuperamos el elemento select del dibujo html
             let select = document.getElementById("listaapellidos");
             //Pintamos el contenido, es decir, las option
@@ -27,27 +29,26 @@
         }
 
         async function buscarEmpleado() {
+            //api/Empleados/7369
             //Recupero el elemento select del dibujo html
             let select = document.getElementById("listaapellidos");
-            //Guardo el valor seleccionado del select en una variable opcion
-            let opcion = select.value;
-            console.log(opcion);
-            //Indicamos la url que tiene los datos de empleado y buscamos en la api por la opcion seleccionada en el select
-            let url = `https://apiempleadosfullstack.azurewebsites.net/api/Empleados/${opcion}`;
-            console.log(url);
+            console.log(select);
+            //Guardo el valor seleccionado del select corespodiente al id del empleado
+            let idempleado = select.value;
+            //construimos la peticion
+            let request = url + "api/empleados/" + idempleado;
+            //console.log(url);
             //Realizamos la petición al servicio
-            let response = await fetch(url);
+            let response = await fetch(request);
             //Convertimos los datos a formato json
-            let datos = response.json();
+            let datos = await response.json();
             //Recupero el elemento div del dibujo html
             let div = document.getElementById("datosempleado");
             //Dibujamos el contenido html dentro del div
             div.innerHTML = `
-                <p>${datos.idEmpleado}</p>
                 <p>${datos.apellido}</p>
                 <p>${datos.oficio}</p>
                 <p>${datos.salario}</p>
-                <p>${datos.departamento}</p>
             `
         }
     </script>

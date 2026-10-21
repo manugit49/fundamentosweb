@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url = "https://apiempleadosfullstack.azurewebsites.net/";
+        async function cargarOficios() {
+            //Construimos nuestra petición
+            let request = url + "api/empleados/oficios";
+            //Realizamos la petición al servicio
+            let response = await fetch(request);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Creamos variable options que pinte en el select
+            let options = "";
+            //Recorremos todos los datos de cada oficio
+            for(let oficio of datos){
+                //dibujamos los oficios
+                options += `
+                    <option> ${oficio} </option>
+                `
+            }
+            //Buscamos el select del html
+            let select = document.getElementById("selectoficio");
+            //Dibujamos todos los options
+            select.innerHTML = options;
+        }
+
+        async function buscarEmpleados() {
+            //api/Empleados/EmpleadosOficio/ANALISTA
+            //Recupero el select del elemento html
+            let select = document.getElementById("selectoficio");
+            //Recupero el valor del oficio, seleccionado del select
+            let oficio = select.value;
+            //Construimos la petición
+            let request = url + "api/Empleados/EmpleadosOficio/" + oficio;
+            //Realizamos la petición al servicio
+            let response = await fetch(request);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Declaramos el contenido de la lista a dibujar
+            let contenido = "";
+            //Recorremos cada empleado de datos
+            for(let empleado of datos){
+                //Dibujamos en la lista el apellido de cada empleado
+                contenido += `
+                    <li>${empleado.apellido}</li>
+                `
+            }
+            //Recuperamos la lista del dibujo html
+            let lista = document.getElementById("listaempleados");
+            //Dibujamos el contenido en la lista
+            lista.innerHTML = contenido;
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Oficios de empleados</h1>
+    Seleccione un oficio:
+    <select id="selectoficio"></select>
+    <button onclick="cargarOficios()">Cargar oficios</button>
+    <button onclick="buscarEmpleados()">Buscar empleados</button>
+    <ul id="listaempleados"></ul>
+</body>
+</html>
