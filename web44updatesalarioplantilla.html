@@ -4,13 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        //incluimos la url de nuestro servicio
+        let url = "https://apiplantillacore.azurewebsites.net/";
+        async function incrementarSalario(){
+            //Necesitamos la información de aquién
+            //vamos a incrementar el salario
+            //Para ello, necesitamos la caja de función del codigo html
+            let cajafuncion = document.getElementById("cajafuncion");
+            //Tambien necesitamos la caja de incremento del codigo html
+            let cajaincremento = document.getElementById("cajaincremento");
+            //Recuperamos el valor de la funcion de la caja función
+            let funcion = cajafuncion.value;
+            //Recuperamos el valor de incremento de la caja incremento
+            let incremento = cajaincremento.value;
+            //Construimos la petición
+            //api/Plantilla/{funcion}/{incremento}
+            let request = `${url}api/Plantilla/${funcion}/${incremento}`;
+            //Realizamos la petición llamando al servicio
+            let response = await fetch(request, {
+                "method": "PUT"
+            });
+            console.log(response);
+            //Buscamos el mensaje
+            let mensaje = document.getElementById("mensaje");
+            //escribimos algo
+            mensaje.innerHTML = "Datos actualizados";
+        }
+    </script>
 </head>
 <body>
     <h1>Update salario plantilla</h1>
+    <a href="web43plantilla.html">Ir a plantilla</a>
+    <h2 id="mensaje"></h2>
     Introduzca función:
     <input type="text" id="cajafuncion"/><br/>
     Introduzca incremento salarial:
     <input type="text" id="cajaincremento"/><br/>
-    <button>Incrementar salarios</button>
+    <button onclick="incrementarSalario()">Incrementar salarios</button>
 </body>
 </html>

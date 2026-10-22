@@ -13,58 +13,58 @@
             let response = await fetch(request);
             //Convertimos los datos a formato json
             let datos = await response.json();
-            //Creamos variable contenido para incluir la información a pintar en la lista
-            let contenido = "";
-            //Recorremos todos los empleados de la plantilla
-            for(let empleado of datos){
-                contenido += `
-                    <li>Apellido: ${empleado.apellido}</li>
-                    <li>Función: ${empleado.funcion}</li>
-                    <li>${empleado.turno}</li><p></p>
+            let filas = "";
+            //recorremos toda la plantilla de datos
+            for (let plantilla of datos){
+                //dibujamos las filas para la tabla
+                filas += `
+                    <tr>
+                        <td> ${plantilla.apellido} </td>
+                        <td> ${plantilla.funcion} </td>
+                        <td> ${plantilla.salario} </td>
+                    </tr>
                 `
             }
-            //Recuperamos el elemento ul del dibujo html para incluir el contenido en la lista
-            let lista = document.getElementById("listaplantilla");
-            //Dibujamos el contenido en la lista
-            lista.innerHTML = contenido;
+            //buscamos la tabla dentro de html
+            let tabla = document.getElementById("tablaplantilla");
+            tabla.innerHTML = filas;
         }
 
         async function datosPlantilla(){
-            //Recupero el elemento select del dibujo
-            let select = document.getElementById("funcionplantilla");
-            //Almacenamos el valor de la select seleccionado
-            let funcion = select.value;
-            console.log(funcion);
+            //buscamos el input del html
+            let input = document.getElementById("cajafuncion");
+            //recuperamos el valor del input que es la función
+            let funcion = input.value;
             //Construimos la petición a la api
             let request = url + "api/Plantilla/PlantillaFuncion/" + funcion;
             //Realizamos la petición al servicio
             let response = await fetch(request);
             //Convertimos los datos a formato json
             let datos = await response.json();
-            //Creamos variable contenido para la información a pintar por cada empleado con la funcion indicada
-            let contenido = "";
-            //Recorremos los datos de la plantilla de cada empleado
-            for(let empleado of datos){
-                if(empleado.funcion == funcion){
-                    contenido += `
-                        <li>${empleado.idEmpleado}, ${empleado.idHospital}, ${empleado.idSala}, ${empleado.apellido}, ${empleado.turno}</li>
-                    `                
-                }
+            let filas = "";
+            //recorremos toda la plantilla de datos
+            for (let plantilla of datos){
+                //dibujamos las filas para la tabla
+                filas += `
+                    <tr>
+                        <td> ${plantilla.apellido} </td>
+                        <td> ${plantilla.funcion} </td>
+                        <td> ${plantilla.salario} </td>
+                    </tr>
+                `
             }
-            //Recuperamos el elemento ul del dibujo
-            let lista = document.getElementById("datosplantilla");
-            //Pintamos en la lista
-            lista.innerHTML = contenido;
+            //buscamos la tabla dentro de html
+            let tabla = document.getElementById("tablaplantilla");
+            tabla.innerHTML = filas;       
         } 
     </script>
 </head>
 <body>
     <h1>Api Plantilla</h1>
+    Introduzca una función:
+    <input type="text" id="cajafuncion"/>
     <button onclick="cargarPlantilla()">Cargar plantilla</button>
-    <ul id="listaplantilla"></ul>
-
-    <select id="funcionplantilla"></select>
     <button onclick="datosPlantilla()">datosPlantilla</button>
-    <ul id="datosplantilla"></ul>
+    <table border="1" id="tablaplantilla"></table>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url = "https://apicruddepartamentoscore.azurewebsites.net/";
+        async function cargarDepartamentos(){
+            //Construimos la petición
+            let request = `${url}api/departamentos`;
+            //Realizamos la petición al servicio
+            let response = await fetch(request);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Creamos la variable filas para pintar en la tabla de html
+            let filas = "";
+            //Recorremos los datos de cada departamento
+            for(let depart of datos){
+                //Pintamos el contenido de las filas en filas
+                filas += `
+                    <tr><td>${depart.numero}</td><td>${depart.nombre}</td><td>${depart.localidad}</td></tr>
+                `
+            }
+            //Recogemos el elemento html de la tabla departamentos
+            let tabla = document.getElementById("departamentos");
+            //Pintamos en la tabla las filas
+            tabla.innerHTML = filas;
+        }
+
+        async function eliminarDepartamento(){
+            //Recuperamos la cajaid de input del dibujo html
+            let cajaid = document.getElementById("cajaid");
+            //recuperamos el valor del id de la caja
+            let id = cajaid.value;
+            //Construimos la petición
+            let request = `${url}api/departamentos/${id}`;
+            //Realizamos la petición al servidor con delete
+            let response = await fetch(request, {
+                method: "DELETE"
+            });
+            cargarDepartamentos();
+        }
+    </script>
+</head>
+<body>
+    <h1>Departamentos</h1>
+    Id del departamento: <input type="number" id="cajaid"/>
+    <button onclick="eliminarDepartamento()">Eliminar departamento</button>
+    <button onclick="cargarDepartamentos()">Cargar departamentos</button>
+    <table border="1" id="departamentos"></table>
+</body>
+</html>

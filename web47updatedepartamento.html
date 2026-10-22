@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url = "https://apicruddepartamentoscore.azurewebsites.net/";
+        async function actualizarDepartamento() {
+            //Construimos la petición al servicio api
+            let request = `${url}api/departamentos`;
+            //Buscamos la caja id del dibujo html
+            let cajaid = document.getElementById("cajaid");
+            //Buscamos la caja nombre del dibujo html
+            let cajanombre = document.getElementById("cajanombre");
+            //Buscamos la caja localidad del dibujo html
+            let cajalocalidad = document.getElementById("cajalocalidad");
+            //Actualizamos un objeto departamento
+            let editado = {
+                "numero": parseInt(cajaid.value),
+                "nombre": cajanombre.value,
+                "localidad": cajalocalidad.value
+            }
+            //Para enviar la información al servicio
+            //necesito convertir el objeto a JSON usando el metodo stringify
+            let data = JSON.stringify(editado);
+            //Llamamos a nuestro servicio con PUT e incluimos los datos a modifica del objeto json
+            let response = await fetch(request, {
+                "method": "PUT",
+                "body": data,
+                "headers": {
+                    "Content-Type": "application/json"
+                }           
+            })
+            cargarDepartamentos();
+        }
+
+        window.onload = function(){
+            cargarDepartamentos();
+        }
+
+        async function cargarDepartamentos(){
+            //Construimos la petición
+            let request = `${url}api/departamentos`;
+            //Realizamos la petición al servicio
+            let response = await fetch(request);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Creamos la variable filas para pintar en la tabla de html
+            let filas = "";
+            //Recorremos los datos de cada departamento
+            for(let depart of datos){
+                //Pintamos el contenido de las filas en filas
+                filas += `
+                    <tr><td>${depart.numero}</td><td>${depart.nombre}</td><td>${depart.localidad}</td></tr>
+                `
+            }
+            //Recogemos el elemento html de la tabla departamentos
+            let tabla = document.getElementById("tabladepartamentos");
+            //Pintamos en la tabla las filas
+            tabla.innerHTML = filas;
+        }
+    </script>
+</head>
+<body>
+    <h1>Actualizar departamento</h1>
+    Id: <input type="number" id="cajaid"/><br/>
+    Nombre: <input type="text" id="cajanombre"/><br/>
+    Localidad: <input type="text" id="cajalocalidad"/><br/>
+    <button onclick="actualizarDepartamento()">Actualizar</button>
+    <button onclick="cargarDepartamentos()">Cargar departamentos</button>
+    <table border="1" id="tabladepartamentos"></table>
+</body>
+</html>

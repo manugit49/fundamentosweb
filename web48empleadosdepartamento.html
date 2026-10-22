@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let urldepartamentos = "https://apicruddepartamentoscore.azurewebsites.net/";
+        let urlempleados = "https://apiempleadosfullstack.azurewebsites.net/";
+        async function cargarDepartamentos(){
+            //Recupero el select del dibujo html
+            let select = document.getElementById("listadepartamentos");
+            //Construimos la peticion
+            let request = `${urldepartamentos}api/departamentos`;
+            //Realizamos la petición al servicio
+            let response = await fetch(request);
+            //Convertimos los datos a formato json
+            let datos = await response.json();
+            //Creamos variable options donde se pintaran las opciones del select
+            let options = "";
+            //Recorremos los datos
+            for (let departamento of datos){
+                options += `
+                    <option value="${departamento.id}"> ${departamento.nombre} </option>
+                `
+            }
+            //Dibujamos las opciones en el select
+            select.innerHTML = options;
+
+        }
+
+        window.onload = function() {
+            cargarDepartamentos();
+        }
+        async function mostrarEmpleados(){
+            //Recupero el select del dibujo html
+            let select = document.getElementById("listadepartamentos");
+            //Recupero el valor del select
+            let departamento = select.value;
+        }
+    </script>
+</head>
+<body>
+    <h1>Empleados departamento</h1>
+    Departamento: <select id="listadepartamentos"></select>
+    <button onclick="mostrarEmpleados()">Mostrar empleados</button>
+</body>
+</html>
