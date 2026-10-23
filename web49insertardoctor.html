@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/estilosviernes.css" rel="stylesheet"/>
+    <script src="js/serviciodoctores.js"></script>
+    <script>
+        window.onload = function() {
+            cargarDoctores();
+        }
+    </script>
+</head>
+<body>
+    <h1>CRUD sobre doctores</h1>
+    Id del doctor: <input type="number" id="cajaiddoctor"/><br/>
+    Id del hospital: <input type="number" id="cajaidhospital"><br/>
+    Apellido: <input type="text" id="cajaapellido"><br/>
+    Especialidad: <input type="text" id="cajaespecialidad"><br/>
+    Salario: <input type="text" id="cajasalario"><br/>
+    <button onclick="insertarDoctores()">Insertar doctor</button>
+    <button onclick="modificarDoctores()">Modificar doctor</button>
+    <button onclick="eliminarDoctores()">Eliminar doctor</button>
+    <!--<button onclick="cargarDoctores()">Cargar doctores</button>-->
+    <table border="1" id="tabladoctores"></table>
+</body>
+</html>
